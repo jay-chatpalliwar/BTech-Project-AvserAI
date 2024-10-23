@@ -10,7 +10,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neighbors import NearestNeighbors
 import spacy
-
+from PyPDF2 import PdfReader
 
 import nltk
 nltk.data.path.append('C:\\Users\\ACER/nltk_data')  # Add this line to explicitly set the data path
@@ -18,16 +18,15 @@ nltk.download('stopwords')
 
 stopw  = set(stopwords.words('english'))
 
-df =pd.read_csv('job_final.csv') 
+df =pd.read_csv('data.csv') 
 df['test']=df['Job_Description'].apply(lambda x: ' '.join([word for word in str(x).split() if len(word)>2 and word not in (stopw)]))
 print(df["Location"])
 app=Flask(__name__)
 
 
-
 @app.route('/')
 def hello():
-    return render_template("model.html")
+    return render_template("model.html")    
 
 
 
@@ -41,22 +40,25 @@ def submit_data():
         f = request.files['userfile']
         f.save(f.filename)
         print("Saved file:", f.filename)
+        
+        text = ""
         try:
-            doc = Document(f.filename)
+            # Open the PDF file and read its content
+            reader = PdfReader(f.filename)
+            for page in reader.pages:
+                text += page.extract_text() + "\n"
             print("Document opened successfully")
-            text = ""
-            for paragraph in doc.paragraphs:
-                text += paragraph.text + "\n"
             
-            # Load SpaCy model with disable options
+            # Load SpaCy model
             nlp = spacy.load('en_core_web_sm', disable=["parser", "ner"])
-            data = ResumeParser(f.filename, custom_nlp=nlp).get_extracted_data()
-            
+            data = ResumeParser(f.filename).get_extracted_data()  # Removed custom_nlp
+
         except Exception as e:
             print("Error opening document:", e)
-            data = ResumeParser(f.filename).get_extracted_data()
+            data = ResumeParser(f.filename).get_extracted_data() 
+            
         resume=data['skills']
-        print(type(resume))
+        print(resume)
     
         skills=[]
         skills.append(' '.join(word for word in resume))
