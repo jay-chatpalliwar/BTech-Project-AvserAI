@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Portal - Find Your Dream Job</title>
+    <style>
+        /* Adding some base styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9fafb;
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f9fafb;">
+    <!-- Header Section -->
+    <header style="background-color: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 24px 20px;">
+            <h1 style="font-size: 28px; font-weight: bold; color: #1f2937; margin: 0; text-align: center;">Job Recommendation System</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main style="max-width: 1200px; margin: 0 auto; padding: 32px 20px;">
+        <!-- Resume Upload Section -->
+        <div style="background-color: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 24px; margin-bottom: 32px;">
+            <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+                <h2 style="font-size: 24px; font-weight: 600; color: #1f2937; margin-bottom: 16px;">Upload your resume</h2>
+                <div style="display: flex; justify-content: center;">
+                    <label style="cursor: pointer; background-color: #2563eb; color: white; padding: 12px 24px; border-radius: 6px; display: inline-block;">
+                        <span>Upload Resume</span>
+                        <input type="file" style="display: none;" accept=".pdf,.doc,.docx">
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Job Listings Section -->
+        <div style="background-color: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 24px;">
+            <h2 style="font-size: 24px; font-weight: 600; color: #1f2937; margin: 0 0 24px 0;">Suggested Jobs</h2>
+            
+            <!-- Filter Section -->
+            <div style="margin-bottom: 24px;">
+                <label style="font-size: 16px; color: #4b5563;">Filter by Location:</label>
+                <select style="margin-left: 12px; padding: 8px 12px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px;">
+                    <option>All Locations</option>
+                    {% for location in dropdown_locations %}
+                    <option>{{ location }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Job Listings Table -->
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background-color: #f3f4f6;">
+                            <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e5e7eb;">Position</th>
+                            <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e5e7eb;">Company</th>
+                            <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e5e7eb;">Location</th>
+                            <th style="padding: 12px; text-align: left; border-bottom: 2px solid #e5e7eb;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for job in job_list %}
+                        <tr style="border-bottom: 1px solid #e5e7eb;">
+                            <td style="padding: 16px 12px; color: #1f2937;">{{ job['Position'] }}</td>
+                            <td style="padding: 16px 12px; color: #4b5563;">{{ job['Company'] }}</td>
+                            <td style="padding: 16px 12px; color: #4b5563;">{{ job['Location'] }}</td>
+                            <td style="padding: 16px 12px;">
+                                <a href="{{ job['Apply Link'] }}" style="display: inline-block; padding: 8px 16px; background-color: #2563eb; color: white; text-decoration: none; border-radius: 6px; font-size: 14px;">Apply</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background-color: white; border-top: 1px solid #e5e7eb; margin-top: 48px;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 32px 20px; text-align: center; color: #6b7280;">
+            <p style="margin: 0;">&copy; 2024 Career Portal. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
