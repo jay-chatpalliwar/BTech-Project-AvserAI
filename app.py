@@ -13,7 +13,7 @@ import spacy
 from PyPDF2 import PdfReader
 
 import nltk
-nltk.data.path.append('C:\\Users\\ACER/nltk_data')  # Add this line to explicitly set the data path
+nltk.data.path.append('C:\\Users\\ACER/nltk_data')
 nltk.download('stopwords')
 
 stopw  = set(stopwords.words('english'))
@@ -26,7 +26,7 @@ app=Flask(__name__)
 
 @app.route('/')
 def hello():
-    return render_template("model.html")    
+    return render_template("page.html")    
 
 
 
@@ -43,7 +43,6 @@ def submit_data():
         
         text = ""
         try:
-            # Open the PDF file and read its content
             reader = PdfReader(f.filename)
             for page in reader.pages:
                 text += page.extract_text() + "\n"
@@ -51,7 +50,7 @@ def submit_data():
             
             # Load SpaCy model
             nlp = spacy.load('en_core_web_sm', disable=["parser", "ner"])
-            data = ResumeParser(f.filename).get_extracted_data()  # Removed custom_nlp
+            data = ResumeParser(f.filename).get_extracted_data()
 
         except Exception as e:
             print("Error opening document:", e)
@@ -65,8 +64,8 @@ def submit_data():
         org_name_clean = skills
         
         def ngrams(string, n=3):
-            string = fix_text(string) # fix text
-            string = string.encode("ascii", errors="ignore").decode() #remove non ascii chars
+            string = fix_text(string)
+            string = string.encode("ascii", errors="ignore").decode()
             string = string.lower()
             chars_to_remove = [")","(",".","|","[","]","{","}","'"]
             rx = '[' + re.escape(''.join(chars_to_remove)) + ']'
@@ -74,9 +73,9 @@ def submit_data():
             string = string.replace('&', 'and')
             string = string.replace(',', ' ')
             string = string.replace('-', ' ')
-            string = string.title() # normalise case - capital at start of each word
-            string = re.sub(' +',' ',string).strip() # get rid of multiple spaces and replace with a single
-            string = ' '+ string +' ' # pad names for ngrams...
+            string = string.title()
+            string = re.sub(' +',' ',string).strip()
+            string = ' '+ string +' '
             string = re.sub(r'[,-./]|\sBD',r'', string)
             ngrams = zip(*[string[i:] for i in range(n)])
             return [''.join(ngram) for ngram in ngrams]
@@ -103,12 +102,11 @@ def submit_data():
         # print(df["Location"])
         df['match']=matches['Match confidence']
         df1 = df.sort_values('match')
-        df2 = df1[['Position', 'Company', 'Location','url']].head(10).reset_index()
+        df2 = df1[['Position', 'Company', 'Location','url']].head(9).reset_index()
         df2['Location'] = df2['Location'].str.replace(r'[^\x00-\x7F]', '')   
         df2['Location'] = df2['Location'].str.replace("â€“", "")
 
         dropdown_locations = sorted(df2['Location'].unique())
-        # Create a list of dictionaries containing the Position, Company, and Location values
         job_list = []
         for index, row in df2.iterrows():
             job_list.append({
@@ -121,14 +119,8 @@ def submit_data():
         
         
     #return  'nothing' 
-        return render_template('model.html', job_list=job_list, dropdown_locations=dropdown_locations)
+        return render_template('page.html', job_list=job_list, dropdown_locations=dropdown_locations)
 
-        
-        
-        
-        
-        
+         
 if __name__ =="__main__":
-    
-    
     app.run()
