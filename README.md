@@ -1,2 +1,3 @@
-# BTech-Project-AvserAI
-Final Year Project on Web Crawling and AI-ML
+
+Final Year BTech Project on Web Crawling and AI/ML.
+
