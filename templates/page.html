@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Recommendation System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f8fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .header {
+            background-color: #00a65a;
+            color: white;
+            text-align: center;
+            padding: 1.5em 1rem;
+            border-radius: 12px 12px 0 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 25px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+        .upload-form {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .upload-form input[type="file"] {
+            padding: 12px;
+            border: 2px solid #ddd;
+            background-color: #fafafa;
+            border-radius: 8px;
+            width: 80%;
+            transition: all 0.2s ease;
+        }
+        .upload-form input[type="file"]:hover {
+            border-color: #00a65a;
+        }
+        .upload-form input[type="submit"] {
+            background-color: #00a65a;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        .upload-form input[type="submit"]:hover {
+            background-color: #007b4f;
+        }
+        .suggested-jobs {
+            margin-top: 30px;
+        }
+        .suggested-jobs h2 {
+            color: #00a65a;
+            margin-bottom: 12px;
+            font-size: 1.5em;
+        }
+        .job-table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .job-table th {
+            background-color: #00a65a;
+            color: white;
+            text-align: left;
+            padding: 14px 18px;
+        }
+        .job-table td {
+            padding: 12px 18px;
+            text-align: center;
+        }
+        .job-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .job-table tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+        .apply-btn {
+            background-color: #00a65a;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .apply-btn:hover {
+            background-color: #007b4f;
+        }
+        .filter-form {
+            margin-bottom: 15px;
+        }
+        .filter-form label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .filter-form select {
+            padding: 8px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            transition: all 0.2s ease;
+        }
+        .filter-form select:hover {
+            border-color: #00a65a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="suggested-jobs">
+            <div class="filter-form">
+                <label for="location-filter">Filter by Location:</label>
+                <select id="location-filter" onchange="filterJobsByLocation()">
+                    <option value="all">All Locations</option>
+                    {% for location in dropdown_locations %}
+                        <option value="{{ location }}">{{ location }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <table class="job-table">
+                <tr>
+                    <th>Position</th>
+                    <th>Company</th>
+                    <th>Location</th>
+                    <th>Apply</th>
+                </tr>
+                {% for job in job_list %}
+                    <tr>
+                        <td>{{ job['Position'] }}</td>
+                        <td>{{ job['Company'] }}</td>
+                        <td>{{ job['Location'] }}</td>
+                        <td><a href="{{ job['Apply Link'] }}" class="apply-btn">Apply</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <script>
+        function filterJobsByLocation() {
+            var locationFilter = document.getElementById("location-filter");
+            var selectedLocation = locationFilter.value;
+            var jobRows = document.querySelectorAll(".job-table tr");
+
+            for (var i = 1; i < jobRows.length; i++) {
+                var locationCell = jobRows[i].querySelector("td:nth-child(3)");
+                if (selectedLocation === "all" || locationCell.textContent === selectedLocation) {
+                    jobRows[i].style.display = "table-row";
+                } else {
+                    jobRows[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

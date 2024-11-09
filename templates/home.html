@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple HTML HomePage</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sriracha&display=swap');
+
+    body {
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    /* CSS for header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: rgb(21, 20, 20);
+    }
+
+    .header .logo {
+      font-size: 25px;
+      font-family: 'Sriracha', cursive;
+      color: #eeebeb;
+      text-decoration: none;
+      margin-left: 30px;
+    }
+
+    .nav-items {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: rgb(21, 20, 20);
+      margin-right: 20px;
+      margin-left: 20px;
+    }
+
+    .nav-items a {
+      text-decoration: none;
+      color: #0f0f0f;
+      padding: 20px 10px;
+    }
+
+    /* CSS for main element */
+    .intro {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 520px;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1031&q=80");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .intro h1 {
+      font-family: sans-serif;
+      font-size: 60px;
+      color: #fff;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 0;
+    }
+
+    .intro p {
+      font-size: 20px;
+      color: #d1d1d1;
+      /* text-transform: uppercase; */
+      margin: 20px 0;
+      margin-left: 10px;
+
+    }
+
+    .intro button {
+      background-color: #eaedee;
+      color: #000;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 5px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.4)
+    }
+
+    .achievements {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 40px;
+      background-color: #dfeee9;
+    }
+
+    .achievements .work {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .achievements .work i {
+      width: fit-content;
+      font-size: 50px;
+      color: #333333;
+      border-radius: 50%;
+      border: 2px solid #333333;
+      padding: 12px;
+    }
+
+    .achievements .work .work-heading {
+      font-size: 25px;
+      color: #300748;
+      text-transform: uppercase;
+      margin: 10px 0;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+
+    .achievements .work .sub-text {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .achievements .work .work-text {
+      font-size: 15px;
+      color: #585858;
+      margin: 10px 0;
+      margin-top: 5px;
+      text-align: center;
+    }
+
+    .about-me {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 80px;
+      border-top: 2px solid #eeeeee;
+    }
+
+    .about-me img {
+      width: 500px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .about-me-text h2 {
+      font-size: 30px;
+      color: #333333;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .about-me-text p {
+      font-size: 15px;
+      color: #585858;
+      margin: 10px 0;
+    }
+
+    /* CSS for footer */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #302f49;
+      padding: 40px 80px;
+    }
+
+    .footer .copy {
+      color: #fff;
+    }
+
+    .bottom-links {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 40px 0;
+    }
+
+    .bottom-links .links {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 40px;
+    }
+
+    .bottom-links .links span {
+      font-size: 20px;
+      color: #fff;
+      text-transform: uppercase;
+      margin: 10px 0;
+    }
+
+    .bottom-links .links a {
+      text-decoration: none;
+      color: #a1a1a1;
+      padding: 10px 20px;
+    }
+
+    .button {
+    margin: 0px;
+    margin-left: 0PX;
+    color: rgb(232, 238, 238);
+    background-color: rgb(67, 110, 67);
+    padding: 5px;
+    font-size: 19px;
+    border-radius: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-color: green;
+}
+
+.button:hover {
+    border-color: rgb(206, 212, 206);
+    background-color:rgb(40, 81, 40) ;
+}
+
+
+footer{
+    background: rgb(13, 13, 35);
+    padding: 15px 23px;
+    color: #fff;
+    text-align: center;
+}
+footer span a{
+    color: crimson;
+    text-decoration: none;
+}
+footer span a:hover{
+    text-decoration: underline;
+}
+
+
+@import url("https://pro.fontawesome.com/releases/v6.0.0-beta1/css/all.css");
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  --color: rgba(30, 30, 30);
+  --bgColor: rgba(245, 245, 245);
+  min-height: 100vh;
+  display: grid;
+  align-content: center;
+  
+  
+  font-family: "Exo 2", sans-serif;
+  color: var(--color);
+  background: var(--bgColor);
+}
+
+h1 { text-align: center }
+
+ol {
+  width: min(60rem, 90%);
+  margin-inline: auto;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+
+  list-style: none;
+  counter-reset: stepnr;
+}
+
+li:nth-child(6n + 1) { --accent-color: #b8df4e }
+li:nth-child(6n + 2) { --accent-color: #4cbccb }
+
+ol li {
+  counter-increment: stepnr;
+  width: 18rem;
+  --borderS: 2rem;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: calc(var(--borderS) + 2rem);
+  position: relative;
+}
+ol li::before,
+ol li::after {
+  inset: 0;
+  position: absolute;
+  border-radius: 50%;
+  border: var(--borderS) solid var(--bgColor);
+  line-height: 1.1;
+}
+ol li::before {
+  content: counter(stepnr);
+  color: var(--accent-color);
+  padding-left: 10rem;
+  font-size: 12rem;
+  font-weight: 700;
+  overflow: hidden;
+}
+
+ol li::after {
+  content: "";
+  filter: drop-shadow(-0.25rem 0.25rem 0.0675rem rgba(0, 0, 0, 0.75)) blur(5px);
+}
+
+ol li > * { width: 7.5rem }
+ol li .icon { font-size: 2rem; color: var(--accent-color); text-align: center }
+ol li .title { font-size: 1.2rem; font-weight: 600 }
+ol li .descr { font-size: 0.8rem; font-weight: 400 }
+
+.credits { margin-top: 2rem; text-align: right }
+.credits a { color: var(--color) }
+
+    
+
+
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <a href="#" class="logo">AVSERAI</a>
+    <nav class="nav-items">
+        <a href="{{ url_for('signin') }}"><button class="button">SIGN IN</button></a>
+        <a href="{{ url_for('signup') }}"><button class="button">SIGN UP</button></a>
+    </nav>
+  </header>
+  <main>
+    <div class="intro">
+      <h1>Search, apply & </h1>
+      <h1>Get your dream job  </h1>
+      <p>Start your hunt for the best, life-changing career opportunities from here in your selected areas conveniently and get hired quickly</p>
+      <a href="{{ url_for('model') }}"><button>Learn More</button></a>
+
+    </div>
+    <div class="achievements">
+      <!-- <div class="work">
+        <p class="work-heading">PERSONALIZED RECOMMENDATIONS</p>
+        <p class="sub-text">Get recommendations tailored to your skills and interests!</p>
+        <p class="work-text">Receive job and internship suggestions that match your unique profile.</p>
+      </div>
+
+        <div class="work">
+            <p class="work-heading">SMART MATCHING</p>
+            <p class="sub-text">Discover roles that align perfectly with your profile!</p>
+            <p class="work-text">Our intelligent algorithm recommends opportunities based on your skills, experience, and interests.</p>
+            
+        </div> -->
+        <h1>FEATURES</h1>
+<ol>
+    <li >
+        <div class="title">PERSONALIZED RECOMMENDATIONS</div>
+        <div class="descr">Receive job and internship suggestions that match your unique profile.</div>
+    </li>
+    
+    <li >
+        <div class="title">SMART MATCHING</div>
+        <div class="descr">Discover roles that align perfectly with your profile!</div>
+    </li>
+  
+    
+    
+</ol>
+
+
+    </div>
+    
+  </main>
+  <footer>
+    <span>Created By <a href="#">AVSERAI</a> | <span class="far fa-copyright"></span>All rights reserved.</span>
+</footer>
+</body>
+
+</html>
