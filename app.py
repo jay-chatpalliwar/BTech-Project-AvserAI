@@ -16,22 +16,26 @@ import nltk
 nltk.data.path.append('C:\\Users\\ACER/nltk_data')
 nltk.download('stopwords')
 
+# Initialize stop words
 stopw = set(stopwords.words('english'))
 
+# Load job data
 df = pd.read_csv('data.csv')
-df['test'] = df['Job_Description'].apply(lambda x: ' '.join([word for word in str(x).split() if len(word) > 2 and word not in (stopw)]))
-print(df["Location"])
+df['test'] = df['Job_Description'].apply(lambda x: ' '.join([word for word in str(x).split() if len(word) > 2 and word not in stopw]))
 
 app = Flask(__name__)
 
+# Route for home page
 @app.route('/')
+def home():
+    return render_template("home.html")  # Make sure 'home.html' is in the templates folder
+
+# Route for a general page (rename or modify as needed)
+@app.route('/hello')
 def hello():
-    return render_template("home.html")
+    return render_template("page.html")
 
-@app.route('/model')
-def model():
-    return render_template("model.html")
-
+# Routes for authentication pages
 @app.route('/signin')
 def signin():
     return render_template("signin.html")
@@ -40,17 +44,21 @@ def signin():
 def signup():
     return render_template("signup.html")
 
-@app.route("/home")
-def home():
-    return redirect('/')
+# Route for model page
+@app.route('/model')
+def model():
+    return render_template("model.html")
 
+# Route for submitting resume and finding matching jobs
 @app.route('/submit', methods=['POST'])
 def submit_data():
     if request.method == 'POST':
+        # File upload handling
         f = request.files['userfile']
         f.save(f.filename)
         print("Saved file:", f.filename)
         
+        # Extract text from the uploaded PDF file
         text = ""
         try:
             reader = PdfReader(f.filename)
@@ -66,13 +74,15 @@ def submit_data():
             print("Error opening document:", e)
             data = ResumeParser(f.filename).get_extracted_data() 
             
+        # Extract skills from resume
         resume = data['skills']
         print(resume)
     
-        skills = []
-        skills.append(' '.join(word for word in resume))
+        # Pre-process skills
+        skills = [' '.join(word for word in resume)]
         org_name_clean = skills
         
+        # Define a function for n-grams
         def ngrams(string, n=3):
             string = fix_text(string)
             string = string.encode("ascii", errors="ignore").decode()
@@ -89,27 +99,30 @@ def submit_data():
             string = re.sub(r'[,-./]|\sBD', r'', string)
             ngrams = zip(*[string[i:] for i in range(n)])
             return [''.join(ngram) for ngram in ngrams]
-
+        
+        # Vectorize the data
         vectorizer = TfidfVectorizer(min_df=1, analyzer=ngrams, lowercase=False)
         tfidf = vectorizer.fit_transform(org_name_clean)
         print('Vectorizing completed...')
         
+        # Function to get nearest neighbors
         def getNearestN(query):
             queryTFIDF_ = vectorizer.transform(query)
             distances, indices = nbrs.kneighbors(queryTFIDF_)
             return distances, indices
-
+        
         nbrs = NearestNeighbors(n_neighbors=1, n_jobs=-1).fit(tfidf)
         unique_org = (df['test'].values)
         distances, indices = getNearestN(unique_org)
         unique_org = list(unique_org)
+        
+        # Collect matches
         matches = []
-
         for i, j in enumerate(indices):
             dist = round(distances[i][0], 2)
             temp = [dist]
             matches.append(temp)
-
+        
         matches = pd.DataFrame(matches, columns=['Match confidence'])
         df['match'] = matches['Match confidence']
         df1 = df.sort_values('match')
@@ -117,9 +130,9 @@ def submit_data():
         df2['Location'] = df2['Location'].str.replace(r'[^\x00-\x7F]', '')
         df2['Location'] = df2['Location'].str.replace("â€“", "")
 
+        # Prepare dropdown locations and job list for display
         dropdown_locations = sorted(df2['Location'].unique())
         job_list = []
-        
         for index, row in df2.iterrows():
             job_list.append({
                 'Position': row['Position'],
