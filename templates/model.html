@@ -2,252 +2,116 @@
 <html>
 <head>
     <title>Job Recommendation System</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-
     <style>
-        
-        /* General styling */
         body {
-            /* font-family: Arial, sans-serif; */
-            font-family: 'Poppins', sans-serif;
-            background-color: rgb(241, 240, 240);
-            color: #333;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            background-image: url('https://www.google.com/search?q=resume+website+template&tbm=isch&ved=2ahUKEwjT2Y6ry-2AAxX3zqACHSTxAScQ2-cCegQIABAA&oq=resume+website+&gs_lcp=CgNpbWcQARgAMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQ6CAgAEIAEELEDOgsIABCABBCxAxCDAToECAAQA1CNBliKHGCQLGgAcAB4AIABoAGIAcEJkgEEMC4xMJgBAKABAaoBC2d3cy13aXotaW1nwAEB&sclient=img&ei=fkLjZNOiMvedg8UPpOKHuAI&bih=619&biw=1366#imgrc=ZZ6K9xfQHKflHM'); /* Add your background image URL */
+            background-size: cover;
         }
-        
+        .header {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            border-radius: 10px 10px 0 0;
+        }
         .container {
-            max-width: 900px;
-            margin: 170px auto;
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            background-color: rgb(28, 28, 45);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
-        
-
-.upload-resume{
-    font-size: 42px;
-    font-weight: bold;
-    margin: 70px;
-    margin-bottom: 50px;
-    color: #ffffff;
-}
-
-        /* Upload form styling */
         .upload-form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 30px;
-            color: #212937;
-            font-size: 30px;
-        }
-        .upload-row {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            justify-content: center;
-            gap: 20px;
-        }
-        .upload-form input[type="file"],
-        .upload-form input[type="submit"] {
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
+            text-align: center;
+            margin-bottom: 20px;
         }
         .upload-form input[type="file"] {
-            background-color: #27282b;
-            color: #ffffff;
-            font-size: 25px;
-            border: 1px solid #444;
+            padding: 10px;
+            border: none;
+            background-color: #f0f0f0;
+            width: 80%;
         }
         .upload-form input[type="submit"] {
-            background-color: rgb(71, 120, 71);
-            color: #ffffff;
-            font-size: 20px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        .upload-form input[type="submit"]:hover {
-            background-color: rgb(18, 74, 18);
-        }
-        
-        
-        .apply-btn {
-            background-color: #00a65a;
+            background-color: #007BFF;
             color: white;
-            padding: 8px 16px;
-            text-decoration: none;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .suggested-jobs {
+            margin-top: 20px;
+        }
+        .suggested-jobs h2 {
+            color: #007BFF;
+            margin-bottom: 10px;
+        }
+        .job-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .job-table th, .job-table td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+            border-radius: 5px;
+        }
+        .job-table th {
+            background-color: #007BFF;
+            color: white;
+        }
+        .filter-form label {
             font-weight: bold;
-            transition: all 0.3s ease;
         }
-        .apply-btn:hover {
-            background-color: #007b4f;
+        .filter-form select {
+            padding: 5px;
         }
-
-
-        .navbar {
-  width: 100%;
-  padding: 12px 0;
-  background: #ecf0f3;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  box-shadow: -3px -3px 7px #ffffff,
-              3px 3px 5px #ceced1,
-              inset -3px -3px 7px #ffffff,
-              inset 3px 3px 5px #ceced1;
-}
-
-.navbar-menu {
-  max-width: 1270px;
-  margin: auto;
-  padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.navbar-logo a {
-  font-size: 28px;
-  font-weight: 600;
-  text-decoration: none;
-  color: #31344b;
-}
-
-.navbar-list {
-  list-style: none;
-  display: flex;
-}
-
-.navbar-list a {
-  margin: 0 8px;
-  text-decoration: none;
-  font-size: 18px;
-  color: #31344b;
-  font-weight: 400;
-  display: inline-flex;
-  padding: 10px 12px;
-  box-shadow: -3px -3px 7px #ffffff,
-              3px 3px 5px #ceced1;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.navbar-list a:hover:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  box-shadow: inset -3px -3px 7px #ffffff,
-              inset 3px 3px 5px #ceced1;
-}
-
-.navbar-list a:hover {
-  color: #3498db;
-}
-
-.navbar-btn {
-  color: #31344b;
-  font-size: 18px;
-  cursor: pointer;
-  display: none;
-}
-
-.navbar-cancel {
-  position: absolute;
-  top: 25px;
-  right: 30px;
-}
-
-#navbar-check {
-  display: none;
-}
-
-@media (max-width: 940px) {
-  .navbar-list {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    max-width: 400px;
-    padding-top: 45px;
-    height: 100%;
-    background: #ecf0f3;
-    box-shadow: 0 5px 10px #b0b0b5;
-    z-index: 12;
-    transition: all 0.3s ease;
-  }
-
-  .navbar-list a {
-    display: block;
-    font-size: 23px;
-    width: 100%;
-    margin-top: 30px;
-    box-shadow: none;
-    text-align: center;
-  }
-
-  .navbar-list a:hover:before {
-    box-shadow: none;
-  }
-
-  .navbar-bars {
-    display: block;
-  }
-
-  #navbar-check:checked ~ .navbar-btn.navbar-bars {
-    display: none;
-  }
-
-  #navbar-check:checked ~ .navbar-list {
-    left: 0;
-  }
-}
-
-
-
-
     </style>
 </head>
 <body>
-    <header class="header">
-        <input type="checkbox" id="navbar-check">
-      <label class="navbar-btn navbar-bars" for="navbar-check"><i class="fas fa-bars"></i></label>
-      <nav class="navbar">
-        <div class="navbar-menu">
-          <div class="navbar-logo"><a href="#">AVSERAI</a></div>
-          <label class="navbar-btn navbar-cancel" for="navbar-check"><i class="fas fa-times"></i></label>
-          <ul class="navbar-list">
-            <li><a href="#"><i class="fas fa-qrcode"></i>Home</a></li>
-            <li><a href="#"><i class="fas fa-question-circle"></i>About</a></li>
-            <li><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>
-            <li><a href="#"><i class="fas fa-phone-volume"></i>Contact</a></li>
-            <li><a href="{{ url_for('signup') }}"><i class="fas fa-comments"></i>Signup</a></li>
-            <li><a href="{{ url_for('signin') }}"><i class="fas fa-comments"></i>SingIn</a></li>        
-          </ul>
-        </div>
-      </nav>
-    
-      </header>
+    <div class="header">
+        <h1>Job Recommendation System</h1>
+    </div>
     <div class="container">
-        <!-- Upload Form -->
         <div class="upload-form">
-            <div class="upload-resume">UPLOAD YOUR RESUME</div>
-            <form action="/submit" method="post" enctype="multipart/form-data">
-                <div class="upload-row">
-                    <input type="file" name="userfile" required>
-                    <input type="submit" value="Upload">
-                </div>
+            <h2>Upload your resume</h2>
+            <form method="POST" action="/submit" enctype="multipart/form-data">
+                <input type="file" name="userfile">
+                <input type="submit" value="Upload">
             </form>
         </div>
-        
+        <div class="suggested-jobs">
+            <h2>Suggested Jobs</h2>
+            <div class="filter-form">
+                <label for="location-filter">Filter by Location:</label>
+                <select id="location-filter" onchange="filterJobsByLocation()">
+                    <option value="all">All Locations</option>
+                    {% for location in dropdown_locations %}
+                        <option value="{{ location }}">{{ location }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <table class="job-table">
+                <tr>
+                    <th>Position</th>
+                    <th>Company</th>
+                    <th>Location</th>
+                    <th>Apply Link</th>
+                </tr>
+                {% for job in job_list %}
+                    <tr>
+                        <td>{{ job['Position'] }}</td>
+                        <td>{{ job['Company'] }}</td>
+                        <td>{{ job['Location'] }}</td>
+                        <td><a href="{{ job['Apply Link'] }}">Link</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
     </div>
     <script>
         function filterJobsByLocation() {
