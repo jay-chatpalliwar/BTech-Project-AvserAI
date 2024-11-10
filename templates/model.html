@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Job Recommendation System</title>
@@ -113,6 +113,280 @@
             </table>
         </div>
     </div>
+    <script>
+        function filterJobsByLocation() {
+            var locationFilter = document.getElementById("location-filter");
+            var selectedLocation = locationFilter.value;
+            var jobRows = document.querySelectorAll(".job-table tr");
+
+            for (var i = 1; i < jobRows.length; i++) {
+                var locationCell = jobRows[i].querySelector("td:nth-child(3)");
+                if (selectedLocation === "all" || locationCell.textContent === selectedLocation) {
+                    jobRows[i].style.display = "table-row";
+                } else {
+                    jobRows[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Recommendation System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    <style>
+        
+        /* General styling */
+        body {
+            /* font-family: Arial, sans-serif; */
+            font-family: 'Poppins', sans-serif;
+            background-color: rgb(241, 240, 240);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 170px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            background-color: rgb(28, 28, 45);
+        }
+        
+
+.upload-resume{
+    font-size: 42px;
+    font-weight: bold;
+    margin: 70px;
+    margin-bottom: 50px;
+    color: #ffffff;
+}
+
+        /* Upload form styling */
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+            color: #212937;
+            font-size: 30px;
+        }
+        .upload-row {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            justify-content: center;
+            gap: 20px;
+        }
+        .upload-form input[type="file"],
+        .upload-form input[type="submit"] {
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .upload-form input[type="file"] {
+            background-color: #27282b;
+            color: #ffffff;
+            font-size: 25px;
+            border: 1px solid #444;
+        }
+        .upload-form input[type="submit"] {
+            background-color: rgb(71, 120, 71);
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .upload-form input[type="submit"]:hover {
+            background-color: rgb(18, 74, 18);
+        }
+        
+        
+        .apply-btn {
+            background-color: #00a65a;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .apply-btn:hover {
+            background-color: #007b4f;
+        }
+
+
+        .navbar {
+  width: 100%;
+  padding: 12px 0;
+  background: #ecf0f3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  box-shadow: -3px -3px 7px #ffffff,
+              3px 3px 5px #ceced1,
+              inset -3px -3px 7px #ffffff,
+              inset 3px 3px 5px #ceced1;
+}
+
+.navbar-menu {
+  max-width: 1270px;
+  margin: auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo a {
+  font-size: 28px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #31344b;
+}
+
+.navbar-list {
+  list-style: none;
+  display: flex;
+}
+
+.navbar-list a {
+  margin: 0 8px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #31344b;
+  font-weight: 400;
+  display: inline-flex;
+  padding: 10px 12px;
+  box-shadow: -3px -3px 7px #ffffff,
+              3px 3px 5px #ceced1;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.navbar-list a:hover:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset -3px -3px 7px #ffffff,
+              inset 3px 3px 5px #ceced1;
+}
+
+.navbar-list a:hover {
+  color: #3498db;
+}
+
+.navbar-btn {
+  color: #31344b;
+  font-size: 18px;
+  cursor: pointer;
+  display: none;
+}
+
+.navbar-cancel {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+}
+
+#navbar-check {
+  display: none;
+}
+
+@media (max-width: 940px) {
+  .navbar-list {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    max-width: 400px;
+    padding-top: 45px;
+    height: 100%;
+    background: #ecf0f3;
+    box-shadow: 0 5px 10px #b0b0b5;
+    z-index: 12;
+    transition: all 0.3s ease;
+  }
+
+  .navbar-list a {
+    display: block;
+    font-size: 23px;
+    width: 100%;
+    margin-top: 30px;
+    box-shadow: none;
+    text-align: center;
+  }
+
+  .navbar-list a:hover:before {
+    box-shadow: none;
+  }
+
+  .navbar-bars {
+    display: block;
+  }
+
+  #navbar-check:checked ~ .navbar-btn.navbar-bars {
+    display: none;
+  }
+
+  #navbar-check:checked ~ .navbar-list {
+    left: 0;
+  }
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <input type="checkbox" id="navbar-check">
+      <label class="navbar-btn navbar-bars" for="navbar-check"><i class="fas fa-bars"></i></label>
+      <nav class="navbar">
+        <div class="navbar-menu">
+          <div class="navbar-logo"><a href="#">AVSERAI</a></div>
+          <label class="navbar-btn navbar-cancel" for="navbar-check"><i class="fas fa-times"></i></label>
+          <ul class="navbar-list">
+            <li><a href="#"><i class="fas fa-qrcode"></i>Home</a></li>
+            <li><a href="#"><i class="fas fa-question-circle"></i>About</a></li>
+            <li><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>
+            <li><a href="#"><i class="fas fa-phone-volume"></i>Contact</a></li>
+            <li><a href="{{ url_for('signup') }}"><i class="fas fa-comments"></i>Signup</a></li>
+            <li><a href="{{ url_for('signin') }}"><i class="fas fa-comments"></i>SingIn</a></li>        
+          </ul>
+        </div>
+      </nav>
+    
+      </header>
+    <div class="container">
+        <!-- Upload Form -->
+        <div class="upload-form">
+            <div class="upload-resume">UPLOAD YOUR RESUME</div>
+            <form action="/submit" method="post" enctype="multipart/form-data">
+                <div class="upload-row">
+                    <input type="file" name="userfile" required>
+                    <input type="submit" value="Upload">
+                </div>
+            </form>
+        </div>
+        
+    </div>
+
     <script>
         function filterJobsByLocation() {
             var locationFilter = document.getElementById("location-filter");

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Job Recommendation System</title>
@@ -139,6 +139,248 @@
         </div>
         <div class="suggested-jobs">
             <h2>Suggested Jobs</h2>
+            <div class="filter-form">
+                <label for="location-filter">Filter by Location:</label>
+                <select id="location-filter" onchange="filterJobsByLocation()">
+                    <option value="all">All Locations</option>
+                    {% for location in dropdown_locations %}
+                        <option value="{{ location }}">{{ location }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <table class="job-table">
+                <tr>
+                    <th>Position</th>
+                    <th>Company</th>
+                    <th>Location</th>
+                    <th>Apply</th>
+                </tr>
+                {% for job in job_list %}
+                    <tr>
+                        <td>{{ job['Position'] }}</td>
+                        <td>{{ job['Company'] }}</td>
+                        <td>{{ job['Location'] }}</td>
+                        <td><a href="{{ job['Apply Link'] }}" class="apply-btn">Apply</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <script>
+        function filterJobsByLocation() {
+            var locationFilter = document.getElementById("location-filter");
+            var selectedLocation = locationFilter.value;
+            var jobRows = document.querySelectorAll(".job-table tr");
+
+            for (var i = 1; i < jobRows.length; i++) {
+                var locationCell = jobRows[i].querySelector("td:nth-child(3)");
+                if (selectedLocation === "all" || locationCell.textContent === selectedLocation) {
+                    jobRows[i].style.display = "table-row";
+                } else {
+                    jobRows[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Recommendation System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+     
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+        body {
+            /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+            background-color: #f4f8fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-top: 80px; /* Adjust padding for navbar */
+        }
+
+        /* Navbar styles */
+        .navbar {
+            width: 100%;
+            padding: 12px 0;
+            background: #ecf0f3;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            box-shadow: -3px -3px 7px #ffffff,
+                        3px 3px 5px #ceced1,
+                        inset -3px -3px 7px #ffffff,
+                        inset 3px 3px 5px #ceced1;
+        }
+
+        .navbar-menu {
+            max-width: 1270px;
+            margin: auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo a {
+            font-size: 28px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #31344b;
+        }
+
+        /* Navbar list styles */
+        .navbar-list {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar-list a {
+            margin: 0 8px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #31344b;
+            font-weight: 400;
+            display: inline-flex;
+            padding: 10px 12px;
+            box-shadow: -3px -3px 7px #ffffff,
+                        3px 3px 5px #ceced1;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-list a:hover {
+            color: #3498db;
+            box-shadow: inset -3px -3px 7px #ffffff, inset 3px 3px 5px #ceced1;
+        }
+
+        /* Mobile view styles (for smaller screens) */
+        @media (max-width: 940px) {
+            .navbar-list {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                max-width: 400px;
+                padding-top: 45px;
+                height: 100%;
+                background: #ecf0f3;
+                box-shadow: 0 5px 10px #b0b0b5;
+                z-index: 12;
+                transition: all 0.3s ease;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .navbar-btn {
+                display: block;
+                font-size: 28px;
+                color: #31344b;
+                cursor: pointer;
+            }
+
+            #navbar-check:checked ~ .navbar-list {
+                display: flex;
+                left: 0;
+            }
+        }
+
+        /* Additional styles for the content below navbar */
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 25px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .suggested-jobs h2 {
+            color: #00a65a;
+            margin-bottom: 12px;
+            font-size: 1.5em;
+        }
+
+        .job-table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .job-table th {
+            background-color: #00a65a;
+            color: white;
+            text-align: left;
+            padding: 14px 18px;
+        }
+
+        .job-table td {
+            padding: 12px 18px;
+            text-align: center;
+        }
+
+        .job-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .apply-btn {
+            background-color: #00a65a;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .apply-btn:hover {
+            background-color: #007b4f;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <input type="checkbox" id="navbar-check">
+        <label class="navbar-btn" for="navbar-check"><i class="fas fa-bars"></i></label>
+        <nav class="navbar">
+           <div class="navbar-menu">
+              <div class="navbar-logo"><a href="#">AVSERAI</a></div>
+              <ul class="navbar-list">
+                 <li><a href="#"><i class="fas fa-qrcode"></i>Home</a></li>
+                 <li><a href="#"><i class="fas fa-question-circle"></i>About</a></li>
+                 <li><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>
+                 <li><a href="#"><i class="fas fa-phone-volume"></i>Contact</a></li>
+                 <li><a href="{{ url_for('signup') }}"><i class="fas fa-comments"></i>Signup</a></li>
+                 <li><a href="{{ url_for('signin') }}"><i class="fas fa-comments"></i>SignIn</a></li>
+              </ul>
+           </div>
+        </nav>
+     </header>
+
+    <div class="container">
+        <div class="suggested-jobs">
             <div class="filter-form">
                 <label for="location-filter">Filter by Location:</label>
                 <select id="location-filter" onchange="filterJobsByLocation()">
