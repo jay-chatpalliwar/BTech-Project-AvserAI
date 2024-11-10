@@ -261,14 +261,28 @@ def extract_text_from_pdf(filepath):
         raise Exception(f"Error extracting text from PDF: {str(e)}")
 
 
-@app.route("/")
+@app.route('/')
+def home():
+    return render_template("home.html")  # Make sure 'home.html' is in the templates folder
+
+# Route for a general page (rename or modify as needed)
+@app.route('/hello')
 def hello():
     return render_template("page.html")
 
+# Routes for authentication pages
+@app.route('/signin')
+def signin():
+    return render_template("signin.html")
 
-@app.route("/home")
-def home():
-    return redirect("/")
+@app.route('/signup')
+def signup():
+    return render_template("signup.html")
+
+# Route for model page
+@app.route('/model')
+def model():
+    return render_template("model.html")
 
 
 # def check_fresher(experience):
