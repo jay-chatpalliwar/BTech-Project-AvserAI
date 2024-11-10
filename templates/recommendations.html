@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Recommendations</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+
+        .job-title {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .company-location {
+            font-size: 1.1em;
+            color: #666;
+        }
+
+        .apply-btn {
+            margin-top: 10px;
+            color: #fff;
+            background-color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="text-center mb-5">Job Recommendations</h2>
+
+        {% if job_list %}
+        <div class="row">
+            {% for job in job_list %}
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="job-title">{{ job['Position'] }}</h5>
+                        <p class="company-location">{{ job['Company'] }} - {{ job['Location'] }}</p>
+                        <a href="{{ job['Apply Link'] }}" target="_blank" class="btn btn-primary apply-btn">Apply
+                            Now</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-center">No job recommendations found based on your resume.</p>
+        {% endif %}
+
+        <div class="text-center mt-5">
+            <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+
+</html>

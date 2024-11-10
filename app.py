@@ -394,7 +394,7 @@ def submit_data():
 
             skills = [" ".join(resume_skills)]
             org_name_clean = skills
-
+            print(skills)
             def ngrams(string, n=3):
                 string = fix_text(string)
                 string = string.encode("ascii", errors="ignore").decode()
