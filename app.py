@@ -65,7 +65,6 @@ def submit_data():
             for page in reader.pages:
                 text += page.extract_text() + "\n"
             print("Document opened successfully")
-
             # Load SpaCy model
             nlp = spacy.load("en_core_web_sm", disable=["parser", "ner"])
             data = ResumeParser(f.filename).get_extracted_data()
@@ -114,6 +113,7 @@ def submit_data():
             queryTFIDF_ = vectorizer.transform(query)
             distances, indices = nbrs.kneighbors(queryTFIDF_)
             return distances, indices
+
 
         # Filter jobs based on experience level
         if resume_experience_level == "fresher":
