@@ -1,119 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Recommendation System</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-     
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
-        * {
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-            box-sizing: border-box;
-        }
         body {
-            /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
-            background-color: #f4f8fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            padding-top: 80px; /* Adjust padding for navbar */
-        }
-
-        /* Navbar styles */
-        .navbar {
-            width: 100%;
-            padding: 12px 0;
-            background: #ecf0f3;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 10;
-            box-shadow: -3px -3px 7px #ffffff,
-                        3px 3px 5px #ceced1,
-                        inset -3px -3px 7px #ffffff,
-                        inset 3px 3px 5px #ceced1;
-        }
-
-        .navbar-menu {
-            max-width: 1270px;
-            margin: auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
+            height: 100vh;
         }
-
-        .navbar-logo a {
-            font-size: 28px;
-            font-weight: 600;
-            text-decoration: none;
-            color: #31344b;
+        .header {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            color: white;
+            text-align: center;
+            padding: 1.5em 1rem;
+            border-radius: 12px 12px 0 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-
-        /* Navbar list styles */
-        .navbar-list {
-            list-style: none;
-            display: flex;
-        }
-
-        .navbar-list a {
-            margin: 0 8px;
-            text-decoration: none;
-            font-size: 18px;
-            color: #31344b;
-            font-weight: 400;
-            display: inline-flex;
-            padding: 10px 12px;
-            box-shadow: -3px -3px 7px #ffffff,
-                        3px 3px 5px #ceced1;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .navbar-list a:hover {
-            color: #3498db;
-            box-shadow: inset -3px -3px 7px #ffffff, inset 3px 3px 5px #ceced1;
-        }
-
-        /* Mobile view styles (for smaller screens) */
-        @media (max-width: 940px) {
-            .navbar-list {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                max-width: 400px;
-                padding-top: 45px;
-                height: 100%;
-                background: #ecf0f3;
-                box-shadow: 0 5px 10px #b0b0b5;
-                z-index: 12;
-                transition: all 0.3s ease;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .navbar-btn {
-                display: block;
-                font-size: 28px;
-                color: #31344b;
-                cursor: pointer;
-            }
-
-            #navbar-check:checked ~ .navbar-list {
-                display: flex;
-                left: 0;
-            }
-        }
-
-        /* Additional styles for the content below navbar */
         .container {
             width: 80%;
             max-width: 900px;
@@ -122,76 +29,116 @@
             background-color: white;
             border-radius: 12px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
-
+        .container:hover {
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        .upload-form {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .upload-form input[type="file"] {
+            padding: 12px;
+            border: 2px solid #ddd;
+            background-color: #fafafa;
+            border-radius: 8px;
+            width: 80%;
+            transition: all 0.2s ease;
+        }
+        .upload-form input[type="file"]:hover {
+            border-color: #007BFF;
+        }
+        .upload-form input[type="submit"] {
+            background: linear-gradient(45deg, #42e695, #3bb2b8);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        .upload-form input[type="submit"]:hover {
+            background: linear-gradient(45deg, #32a852, #2b8c84);
+        }
+        .suggested-jobs {
+            margin-top: 30px;
+        }
         .suggested-jobs h2 {
-            color: #00a65a;
+            color: #007BFF;
             margin-bottom: 12px;
             font-size: 1.5em;
         }
-
         .job-table {
             width: 100%;
             border-collapse: collapse;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-
-        .job-table th {
-            background-color: #00a65a;
-            color: white;
-            text-align: left;
+        .job-table th, .job-table td {
+            border: none;
             padding: 14px 18px;
+            text-align: left;
         }
-
-        .job-table td {
-            padding: 12px 18px;
+        .job-table th {
+            background: linear-gradient(45deg, #007BFF, #00f2fe);
+            color: white;
             text-align: center;
         }
-
-        .job-table tr:nth-child(even) {
-            background-color: #f9f9f9;
+        .job-table td {
+            background-color: #fafafa;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
         }
-
         .apply-btn {
-            background-color: #00a65a;
+            background: linear-gradient(45deg, #42e695, #3bb2b8);
             color: white;
-            padding: 8px 16px;
+            padding: 10px 20px;
             text-decoration: none;
             border-radius: 8px;
             font-weight: bold;
+            display: inline-block;
             transition: all 0.3s ease;
         }
-
         .apply-btn:hover {
-            background-color: #007b4f;
+            background: linear-gradient(45deg, #32a852, #2b8c84);
         }
-
+        .filter-form {
+            margin-bottom: 15px;
+        }
+        .filter-form label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .filter-form select {
+            padding: 8px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            transition: all 0.2s ease;
+        }
+        .filter-form select:hover {
+            border-color: #007BFF;
+        }
     </style>
 </head>
 <body>
-
-    <header>
-        <input type="checkbox" id="navbar-check">
-        <label class="navbar-btn" for="navbar-check"><i class="fas fa-bars"></i></label>
-        <nav class="navbar">
-           <div class="navbar-menu">
-              <div class="navbar-logo"><a href="#">AVSERAI</a></div>
-              <ul class="navbar-list">
-                 <li><a href="#"><i class="fas fa-qrcode"></i>Home</a></li>
-                 <li><a href="#"><i class="fas fa-question-circle"></i>About</a></li>
-                 <li><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>
-                 <li><a href="#"><i class="fas fa-phone-volume"></i>Contact</a></li>
-                 <li><a href="{{ url_for('signup') }}"><i class="fas fa-comments"></i>Signup</a></li>
-                 <li><a href="{{ url_for('signin') }}"><i class="fas fa-comments"></i>SignIn</a></li>
-              </ul>
-           </div>
-        </nav>
-     </header>
-
+    <div class="header">
+        <h1>Job Recommendation System</h1>
+    </div>
     <div class="container">
+        <div class="upload-form">
+            <h2>Upload your resume</h2>
+            <form method="POST" action="/submit" enctype="multipart/form-data">
+                <input type="file" name="userfile">
+                <input type="submit" value="Upload">
+            </form>
+        </div>
         <div class="suggested-jobs">
+            <h2>Suggested Jobs</h2>
             <div class="filter-form">
                 <label for="location-filter">Filter by Location:</label>
                 <select id="location-filter" onchange="filterJobsByLocation()">
