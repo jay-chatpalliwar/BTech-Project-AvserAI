@@ -1,45 +1,80 @@
 [
     {
-        "Position": "Machine Learning Research Engineer x 3 at SaaSlife",
-        "Company": "Global Path Consulting Services LLC",
-        "Location": "San Francisco, CA",
-        "Salary": "$130,000 - $200,000 a year",
-        "url": "https://www.simplyhired.com/job/o9ZJNHbAwRZfEC-aNGuvJa7VG3Xl1249AbweKkwxF92HTH1hKnQ7cw"
+        "Position": "AI/ML Engineer",
+        "Company": "VIDUSHI INFOTECH",
+        "Location": "Phoenix, AZ",
+        "Salary": "Not specified",
+        "url": "https://www.simplyhired.com/job/XdDnVjSTMNFKYOJ7ULvcl4TKFfHRey0D1W01aLTmqFWsDaNSmssERw"
     },
     {
-        "Position": "ML Engineer L5 - Ads Platform Engineering (Forecasting)",
-        "Company": "Netflix",
+        "Position": "ML Data Engineer",
+        "Company": "Titan Healthcare Management Solutions",
         "Location": "Remote",
-        "Salary": "$100,000 - $720,000 a year",
-        "url": "https://www.simplyhired.com/job/AQfKXq6UQ156n7ePt0GQyUaCIEbgqAFKTRj3SXx32t2ZQCv21z5d_g"
-    },
-    {
-        "Position": "Sr. ML Ops Engineer",
-        "Company": "Deep 6 AI",
-        "Location": "Pasadena, CA",
-        "Salary": "$160,000 - $190,000 a year",
-        "url": "https://www.simplyhired.com/job/W__tEkADeWsfFqJy30-XlcgmgKCOmDzE9y_3cTAYwKRRyK_b8bp9yw"
-    },
-    {
-        "Position": "Gen AI/ML Engineer",
-        "Company": "Ccube",
-        "Location": "Atlanta, GA",
-        "Salary": "$65 - $75 an hour",
-        "url": "https://www.simplyhired.com/job/0RSzSQ0O3uVrZs_1QLCwRgaJ6E_eITRzKtXuCRY7p2xc5Dy-cffnHQ"
-    },
-    {
-        "Position": "Partner 20, ML Ops Engineer",
-        "Company": "a16z",
-        "Location": "San Francisco, CA",
-        "Salary": "$225,000 - $263,000 a year",
-        "url": "https://www.simplyhired.com/job/BwVxiQZ8gONDsz2yvxPPsxIvSDst3kQY6sxJNjP3WitoaQlYeHXjHA"
+        "Salary": "Not specified",
+        "url": "https://www.simplyhired.com/job/nNeQbDgKLDVmwPNS4m26_6pswzpGfj9rYvc4K-oXMS4ybYK9Efeq6w"
     },
     {
         "Position": "AI/ML Engineer",
-        "Company": "General Technical Services, LLC",
-        "Location": "Adelphi, MD",
+        "Company": "Interas Labs LLC",
+        "Location": "New York, NY",
+        "Salary": "$100 - $110 an hour",
+        "url": "https://www.simplyhired.com/job/Ki_qwJmuM7lD6kZOHH_6JtQcIhWWGcEO0L-UebGChf1u-wn5j3lNjg"
+    },
+    {
+        "Position": "AI/ML QA Engineer",
+        "Company": "Genius Match",
+        "Location": "Remote",
+        "Salary": "$75,000 - $100,000 a year",
+        "url": "https://www.simplyhired.com/job/GQo1MByYbTxNEZD_kkB_Pbv3dYqd_C0BfOPFAdUUybqks0wa1DLQ7w"
+    },
+    {
+        "Position": "Senior ML engineer",
+        "Company": "sybill.ai",
+        "Location": "Mountain View, CA",
+        "Salary": "$150,000 - $200,000 a year",
+        "url": "https://www.simplyhired.com/job/pkwTcA_VEunfkpZi9IvziXTe1tGBYKb1yKnUwr1BsOJiz1GQQOo1Iw"
+    },
+    {
+        "Position": "Sr. ML Engineer",
+        "Company": "Nitor Infotech",
+        "Location": "Irving, TX",
+        "Salary": "$178,016 - $188,129 a year",
+        "url": "https://www.simplyhired.com/job/BGzlcYjYiE22KHUN0GaxrsFEBu3WvN_oZrAdqYUtdj2DeujBCZp1jA"
+    },
+    {
+        "Position": "Senior ML Engineer",
+        "Company": "Sybill AI",
+        "Location": "United States",
+        "Salary": "$150,000 - $200,000 a year",
+        "url": "https://www.simplyhired.com/job/kQVapyp1NDNgyfyV4XDhoH9WJhNNs3GU-1YMDz_e-u71qkrtrpNVlw"
+    },
+    {
+        "Position": "ML Engineer",
+        "Company": "Log10 Inc",
+        "Location": "Remote",
         "Salary": "Not specified",
-        "url": "https://www.simplyhired.com/job/y-5yWHc0G5ve4ehmtHd0xPeCCLkv6qEFe4wjJ27pTspKCrOTmO0F0g"
+        "url": "https://www.simplyhired.com/job/j-92LdUFe4JiqJ5O9RwHyMKLUfEzn64EgZmwsYHbHFtXQ1X_PvOnDQ"
+    },
+    {
+        "Position": "AI/ML Engineer",
+        "Company": "SchoolAI",
+        "Location": "Lehi, UT",
+        "Salary": "$140,000 - $220,000 a year",
+        "url": "https://www.simplyhired.com/job/7aa_PaiDqPNk3TxhplGXDrWAEd1JFtdgYp8H125geQFUlCW3Ivruiw"
+    },
+    {
+        "Position": "Sr. AI/ML Engineer",
+        "Company": "Master Compliance Inc",
+        "Location": "California, KY",
+        "Salary": "$44.11 - $46.99 an hour",
+        "url": "https://www.simplyhired.com/job/V8yBuSjIvm4V6cDzmVq86wzIWsYAvE_GLyghpX2xhHrBnJco-hrMdw"
+    },
+    {
+        "Position": "Engineer - AI/ML",
+        "Company": "Amex",
+        "Location": "Phoenix, AZ",
+        "Salary": "$85,000 - $150,000 a year",
+        "url": "https://www.simplyhired.com/job/RuQAFlHKxBlcP4ZRX1Og16onwzlmBRYARdvvYoZyy8Yht0Ss9NXsgw"
     },
     {
         "Position": "AI-ML Engineer",
@@ -49,81 +84,11 @@
         "url": "https://www.simplyhired.com/job/J7AjxAkOrRyQVG0jRuDRGlSM_pum0pQCPoE-WbJAS4ycbnAWf2CJ7w"
     },
     {
-        "Position": "Lead ML/AI Engineer",
-        "Company": "Children's National Hospital",
-        "Location": "Silver Spring, MD",
-        "Salary": "$164,071 - $273,451 a year",
-        "url": "https://www.simplyhired.com/job/Y2Ye0o_RxOxhUe56fF-re99hfM7_Xnqm23dGzUf9zMH8ykJbzhts_A"
-    },
-    {
-        "Position": "Staff ML Engineer",
-        "Company": "Xero",
-        "Location": "Los Angeles, CA",
-        "Salary": "$150,000 - $195,000 a year",
-        "url": "https://www.simplyhired.com/job/g9_Q-T2T1kjdbVZbOTZ3jdjfEGX7UAEBpUXb8_IqxytqupfJ0nA7SA"
-    },
-    {
-        "Position": "Senior BI Engineer",
-        "Company": "General Motors",
-        "Location": "Remote",
-        "Salary": "Not specified",
-        "url": "https://www.simplyhired.com/job/gGxorYYp4rtyQJsQCPZf3DQwVHDXfO5xUyvoiCgGkF_2U_akwO_ikQ"
-    },
-    {
-        "Position": "AI Researcher / Engineer",
-        "Company": "Moonwalk Biosciences, Inc.",
-        "Location": "South San Francisco, CA",
-        "Salary": "$102,000 - $270,000 a year",
-        "url": "https://www.simplyhired.com/job/CFKG5TTfIxIR2pt5a27UWHF_dUdVAf0F8J6pc9-VWF44Eua4C9qSdg"
-    },
-    {
-        "Position": "GPU ML Engineer",
-        "Company": "Apple",
-        "Location": "Waltham, MA",
-        "Salary": "Not specified",
-        "url": "https://www.simplyhired.com/job/ZiIE-nb-f75IS92kWaVgZTO-9Ar_l5Uo2U_TSdKtZl6aLXwRino6ZQ"
-    },
-    {
-        "Position": "Principal ML Ops Engineer",
-        "Company": "Flagship Pioneering, Inc.",
+        "Position": "AI/ML Engineer",
+        "Company": "GSK",
         "Location": "Cambridge, MA",
-        "Salary": "Not specified",
-        "url": "https://www.simplyhired.com/job/ORgVbRy03CFUnSMMz-JaoVoHeSZDv_-_XcAiEgTrhM5VBcpSSKlwjA"
-    },
-    {
-        "Position": "Machine Learning Engineer",
-        "Company": "Unlimit Ventures",
-        "Location": "San Diego, CA",
-        "Salary": "Not specified",
-        "url": "https://www.simplyhired.com/job/YdA9ehEE_FNcKIyQBWzvrSyrfKTHlGMLMOYG8YzVDLqrDG1B8uNEcA"
-    },
-    {
-        "Position": "AI / ML Developer",
-        "Company": "DuploCloud",
-        "Location": "San Francisco Bay Area, CA",
-        "Salary": "$170,000 - $190,000 a year",
-        "url": "https://www.simplyhired.com/job/tsG-FmXlCBq7dhEGoY2pMQr4h60zyPKFHW4r3-BdhCFasmaOtgdO2w"
-    },
-    {
-        "Position": "Data Engineer - Official AI",
-        "Company": "Pioneer Square Labs",
-        "Location": "Seattle, WA",
-        "Salary": "Not specified",
-        "url": "https://www.simplyhired.com/job/sv67S1ptv95rHJwOMP6wZpW2yjXNFpqyG0o3o3-x9rVr__owZm9j8A"
-    },
-    {
-        "Position": "Founding Engineer - Senior Software Engineer (Ai/ML)",
-        "Company": "G2M Talent",
-        "Location": "San Francisco Bay Area, CA",
-        "Salary": "$160,000 - $220,000 a year",
-        "url": "https://www.simplyhired.com/job/iBtg3UF9aJfCXC9mGbCeAy-FEYL9084LzAo8ItRi-mPZewHF5IM1gw"
-    },
-    {
-        "Position": "Staff Software Engineer, Applied ML",
-        "Company": "Character.AI",
-        "Location": "Menlo Park, CA",
-        "Salary": "$150,000 - $250,000 a year",
-        "url": "https://www.simplyhired.com/job/KUldZBIxKrHYqZsBCBaN-4rFBd6DYpJU0KMQAhbWuMBfpsToFUjyOw"
+        "Salary": "$130,900 - $177,100 a year",
+        "url": "https://www.simplyhired.com/job/wVVLZ2DXS1HBNH-YBvWcTFOE4ikX28bDnggwvCnzLT7iI6PkrHcmGw"
     },
     {
         "Position": "2024-01-1E AI/ML Engineer",
@@ -133,10 +98,45 @@
         "url": "https://www.simplyhired.com/job/GV1tFzx-nnHeo94NE64C-trJhdHodVgYeXOIAdnMaEnTclmCvy7_og"
     },
     {
-        "Position": "Senior ML Engineer, Embodied AI",
-        "Company": "Serve Robotics",
-        "Location": "Remote",
-        "Salary": "$150,000 - $200,000 a year",
-        "url": "https://www.simplyhired.com/job/Om1Yc1_l2VCG8JRMBynvufSpBma52LxjxJ2EZazHAis7-xG8xc1nTg"
+        "Position": "AI/ML Engineer",
+        "Company": "Nous Infosystems",
+        "Location": "Edison, NJ",
+        "Salary": "$70.88 - $75.68 an hour",
+        "url": "https://www.simplyhired.com/job/-KNlKa6ZHj_YFyMZkcVziwYcEHHb5hzRxDJuwO_LLLK9FAKA-qs8vw"
+    },
+    {
+        "Position": "Principal ML Engineer",
+        "Company": "NBCUniversal",
+        "Location": "New York, NY",
+        "Salary": "$165,000 - $210,000 a year",
+        "url": "https://www.simplyhired.com/job/7s7dh65YeSKn42f3lyySBgBasWYoxdKkU_hTEw7ASNf40dJrc-_UMQ"
+    },
+    {
+        "Position": "ML Engineer",
+        "Company": "Geometric AI",
+        "Location": "Fairfax, VA",
+        "Salary": "$140,000 - $160,000 a year",
+        "url": "https://www.simplyhired.com/job/jQhWsmOsJQdAsIQc4uNNviZt0folOANJJXyMk2SjQOzL_2fo0d3pag"
+    },
+    {
+        "Position": "ML Engineer",
+        "Company": "Fundbox",
+        "Location": "New York, NY",
+        "Salary": "$150,000 - $175,000 a year",
+        "url": "https://www.simplyhired.com/job/EX5Wnqq0M2LizQtgst_asbFWgaXUDlQMpnVdz-3C7xEEcFhicRSnvg"
+    },
+    {
+        "Position": "Senior AI / ML Engineer (REMOTE)",
+        "Company": "Hewlett Packard Enterprise",
+        "Location": "Spring, TX",
+        "Salary": "$133,500 - $307,000 a year",
+        "url": "https://www.simplyhired.com/job/Os_aIlRKN0QmtNkBqRTevU_Cm5gHSZfW-ev14rKPSt__rHYfpAXVGg"
+    },
+    {
+        "Position": "Lead AI/ML Engineer",
+        "Company": "Interas LLC",
+        "Location": "New York, NY",
+        "Salary": "$80 - $90 an hour",
+        "url": "https://www.simplyhired.com/job/iebUeF7Ojb0fsALcwRZ3rBhIl6FZibP-96JP-cxGKiLfTiuvBZmyxg"
     }
 ]
