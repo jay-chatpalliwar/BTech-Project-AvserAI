@@ -1,285 +1,101 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-   <head>
-      <meta charset="utf-8">
-      <title>Login</title>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-      <style>
-         @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
-* {
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-  box-sizing: border-box;
-}
-body {
-  display: flex;
-  height: 100vh;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  background: #151515;
-  padding-top: 80px; /* Adjust this padding to accommodate the fixed navbar */
-}
-.login-form {
-  position: relative;
-  width: 370px;
-  height: auto;
-  background: #1b1b1b;
-  padding: 40px 35px 60px;
-  box-sizing: border-box;
-  border: 1px solid black;
-  border-radius: 5px;
-  box-shadow: inset 0 0 1px #272727;
-}
-.text {
-  font-size: 30px;
-  color: #c7c7c7;
-  font-weight: 600;
-  letter-spacing: 2px;
-}
-form {
-  margin-top: 40px;
-}
-form .field {
-  margin-top: 20px;
-  display: flex;
-}
-.field .fas {
-  height: 50px;
-  width: 60px;
-  color: #868686;
-  font-size: 20px;
-  line-height: 50px;
-  border: 1px solid #444;
-  border-right: none;
-  border-radius: 5px 0 0 5px;
-  background: linear-gradient(#333, #222);
-}
-.field input, form button {
-  height: 50px;
-  width: 100%;
-  outline: none;
-  font-size: 19px;
-  color: #868686;
-  padding: 0 15px;
-  border-radius: 0 5px 5px 0;
-  border: 1px solid #444;
-  caret-color: #339933;
-  background: linear-gradient(#333, #222);
-}
-input:focus {
-  color: #339933;
-  box-shadow: 0 0 5px rgba(0, 255, 0, .2),
-              inset 0 0 5px rgba(0, 255, 0, .1);
-  background: linear-gradient(#333933, #222922);
-  animation: glow .8s ease-out infinite alternate;
-}
-@keyframes glow {
-  0% {
-    border-color: #339933;
-    box-shadow: 0 0 5px rgba(0, 255, 0, .2),
-                inset 0 0 5px rgba(0, 0, 0, .1);
-  }
-  100% {
-    border-color: #6f6;
-    box-shadow: 0 0 20px rgba(0, 255, 0, .6),
-                inset 0 0 10px rgba(0, 255, 0, .4);
-  }
-}
-button {
-  margin-top: 30px;
-  border-radius: 5px !important;
-  font-weight: 600;
-  letter-spacing: 1px;
-  cursor: pointer;
-}
-button:hover {
-  color: #339933;
-  border: 1px solid #339933;
-  box-shadow: 0 0 5px rgba(0, 255, 0, .3),
-              0 0 10px rgba(0, 255, 0, .2),
-              0 0 15px rgba(0, 255, 0, .1),
-              0 2px 0 black;
-}
-.link {
-  margin-top: 25px;
-  color: #868686;
-}
-.link a {
-  color: #339933;
-  text-decoration: none;
-}
-.link a:hover {
-  text-decoration: underline;
-}
 
-/* Navbar styles */
-.navbar {
-  width: 100%;
-  padding: 12px 0;
-  background: #ecf0f3;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  box-shadow: -3px -3px 7px #ffffff,
-              3px 3px 5px #ceced1,
-              inset -3px -3px 7px #ffffff,
-              inset 3px 3px 5px #ceced1;
-}
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-.navbar-menu {
-  max-width: 1270px;
-  margin: auto;
-  padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+</head>
 
-.navbar-logo a {
-  font-size: 28px;
-  font-weight: 600;
-  text-decoration: none;
-  color: #31344b;
-}
+<body>
+    <nav class="bg-white border-gray-200 dark:bg-gray-900">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">AVSERAI</span>
+            </a>
+            <button data-collapse-toggle="navbar-default" type="button"
+                class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                aria-controls="navbar-default" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M1 1h15M1 7h15M1 13h15" />
+                </svg>
+            </button>
+            <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                <ul
+                    class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                    <li>
+                        <a href="/"
+                            class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
+                            aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <a href="#about-section"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
+                    </li>
+                    <li>
+                        <a href="#services-section"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
+                    </li>
 
-.navbar-list {
-  list-style: none;
-  display: flex;
-}
+                    <li>
+                        <a href="{{ url_for('signup') }}"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Sign
+                            Up</a>
+                    </li>
 
-.navbar-list a {
-  margin: 0 8px;
-  text-decoration: none;
-  font-size: 18px;
-  color: #31344b;
-  font-weight: 400;
-  display: inline-flex;
-  padding: 10px 12px;
-  box-shadow: -3px -3px 7px #ffffff,
-              3px 3px 5px #ceced1;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.navbar-list a:hover:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  box-shadow: inset -3px -3px 7px #ffffff,
-              inset 3px 3px 5px #ceced1;
-}
-
-.navbar-list a:hover {
-  color: #3498db;
-}
-
-.navbar-btn {
-  color: #31344b;
-  font-size: 18px;
-  cursor: pointer;
-  display: none;
-}
-
-.navbar-cancel {
-  position: absolute;
-  top: 25px;
-  right: 30px;
-}
-
-#navbar-check {
-  display: none;
-}
-
-@media (max-width: 940px) {
-  .navbar-list {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    max-width: 400px;
-    padding-top: 45px;
-    height: 100%;
-    background: #ecf0f3;
-    box-shadow: 0 5px 10px #b0b0b5;
-    z-index: 12;
-    transition: all 0.3s ease;
-  }
-
-  .navbar-list a {
-    display: block;
-    font-size: 23px;
-    width: 100%;
-    margin-top: 30px;
-    box-shadow: none;
-    text-align: center;
-  }
-
-  .navbar-list a:hover:before {
-    box-shadow: none;
-  }
-
-  .navbar-bars {
-    display: block;
-  }
-
-  #navbar-check:checked ~ .navbar-btn.navbar-bars {
-    display: none;
-  }
-
-  #navbar-check:checked ~ .navbar-list {
-    left: 0;
-  }
-}
-      </style>
-   </head>
-   <body>
-
-      <header class="header">
-         <input type="checkbox" id="navbar-check">
-         <label class="navbar-btn navbar-bars" for="navbar-check"><i class="fas fa-bars"></i></label>
-         <nav class="navbar">
-            <div class="navbar-menu">
-               <div class="navbar-logo"><a href="#">AVSERAI</a></div>
-               <label class="navbar-btn navbar-cancel" for="navbar-check"><i class="fas fa-times"></i></label>
-               <ul class="navbar-list">
-                  <li><a href="#"><i class="fas fa-qrcode"></i>Home</a></li>
-                  <li><a href="#"><i class="fas fa-question-circle"></i>About</a></li>
-                  <li><a href="#"><i class="fas fa-sliders-h"></i>Services</a></li>
-                  <li><a href="#"><i class="fas fa-phone-volume"></i>Contact</a></li>
-                  <li><a href="{{ url_for('signup') }}"><i class="fas fa-comments"></i>Signup</a></li>
-                  <li><a href="{{ url_for('signin') }}"><i class="fas fa-comments"></i>SignIn</a></li>
-               </ul>
+                    <li>
+                        <a href="{{ url_for('signin') }}"
+                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Sign
+                            In</a>
+                    </li>
+                </ul>
             </div>
-         </nav>
-      </header>
+        </div>
+    </nav>
 
-      <div class="login-form">
-         <div class="text">
-            LOGIN
-         </div>
-         <form>
-         <form>
-            <div class="field">
-               <div class="fas fa-envelope"></div>
-               <input type="text" placeholder="Email or Phone">
+    <section class="bg-gray-50 dark:bg-gray-900">
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+
+            <div
+                class="w-full bg-white rounded-lg shadow dark:border sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                    <h1
+                        class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                        Sign In
+                    </h1>
+                    <form class="space-y-4 md:space-y-6" action="{{ url_for('signin') }}" method="POST">
+                        <div>
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                Email</label>
+                            <input type="email" name="email" id="email" placeholder="name@company.com"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                required>
+                        </div>
+                        <div>
+                            <label for="password"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                            <input type="password" name="password" id="password" placeholder="••••••••"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                required>
+                        </div>
+                        <button type="submit"
+                            class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign
+                            In</button>
+                        <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                            Don’t have an account? <a href="{{ url_for('signup') }}"
+                                class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
+                        </p>
+                    </form>
+                </div>
             </div>
-            <div class="field">
-               <div class="fas fa-lock"></div>
-               <input type="password" placeholder="Password">
-            </div>
-            <button>SIGN IN </button>
-            <div class="link">
-               Not a member?
-               <a href="{{ url_for('signup') }}">Signup now</a>
-            </div>
-         </form>
-      </div>
-   </body>
+        </div>
+    </section>
+
+</body>
 </html>

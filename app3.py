@@ -1,188 +1,3 @@
-"""
-from pyresparser import ResumeParser
-from flask import Flask, render_template, redirect, request
-import numpy as np
-import pandas as pd
-import re
-from ftfy import fix_text
-from nltk.corpus import stopwords
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.neighbors import NearestNeighbors
-import spacy
-from PyPDF2 import PdfReader
-import nltk
-
-nltk.data.path.append("C:\\Users\\ACER/nltk_data")
-nltk.download("stopwords")
-
-stopw = set(stopwords.words("english"))
-df = pd.read_csv("data.csv")
-df["test"] = df["Job_Description"].apply(
-    lambda x: " ".join(
-        [word for word in str(x).split() if len(word) > 2 and word not in stopw]
-    )
-)
-
-app = Flask(__name__)
-
-
-# Helper functions
-def is_fresher_job(job_description):
-    fresher_keywords = [
-        "fresher",
-        "entry level",
-        "junior",
-        "0-1 years",
-        "no experience",
-    ]
-    return any(
-        keyword.lower() in job_description.lower() for keyword in fresher_keywords
-    )
-
-
-@app.route("/")
-def hello():
-    return render_template("page.html")
-
-
-@app.route("/home")
-def home():
-    return redirect("/")
-
-
-@app.route("/submit", methods=["POST"])
-def submit_data():
-    if request.method == "POST":
-        f = request.files["userfile"]
-        f.save(f.filename)
-        print("Saved file:", f.filename)
-
-        # Extract text from PDF and parse resume data
-        text = ""
-        try:
-            reader = PdfReader(f.filename)
-            for page in reader.pages:
-                text += page.extract_text() + "\n"
-            print("Document opened successfully")
-
-            # Load SpaCy model
-            nlp = spacy.load("en_core_web_sm", disable=["parser", "ner"])
-            data = ResumeParser(f.filename).get_extracted_data()
-        except Exception as e:
-            print("Error opening document:", e)
-            data = ResumeParser(f.filename).get_extracted_data()
-
-        # Extract skills from the resume
-        resume_skills = data.get("skills", [])
-        experience = data.get("total_experience", 0)  # Defaults to 0 if missing
-        resume_experience_level = "fresher" if not experience else "experienced"
-
-        # If resume has no skills, handle it gracefully
-        if not resume_skills:
-            resume_skills = [""]  # Placeholder if no skills found
-
-        print("Extracted skills:", resume_skills)
-
-        # Preprocess and vectorize skills for matching
-        skills = []
-        skills.append(" ".join(word for word in resume_skills))
-        org_name_clean = skills
-
-        def ngrams(string, n=3):
-            string = fix_text(string)
-            string = string.encode("ascii", errors="ignore").decode()
-            string = string.lower()
-            chars_to_remove = [")", "(", ".", "|", "[", "]", "{", "}", "'"]
-            rx = "[" + re.escape("".join(chars_to_remove)) + "]"
-            string = re.sub(rx, "", string)
-            string = string.replace("&", "and")
-            string = string.replace(",", " ")
-            string = string.replace("-", " ")
-            string = string.title()
-            string = re.sub(" +", " ", string).strip()
-            string = " " + string + " "
-            string = re.sub(r"[,-./]|\sBD", r"", string)
-            ngrams = zip(*[string[i:] for i in range(n)])
-            return ["".join(ngram) for ngram in ngrams]
-
-        vectorizer = TfidfVectorizer(min_df=1, analyzer=ngrams, lowercase=False)
-        tfidf = vectorizer.fit_transform(org_name_clean)
-        print("Vectorizing completed...")
-
-        def getNearestN(query):
-            queryTFIDF_ = vectorizer.transform(query)
-            distances, indices = nbrs.kneighbors(queryTFIDF_)
-            return distances, indices
-
-        # Filter jobs based on experience level
-        if resume_experience_level == "fresher":
-            df_filtered = df[df["Job_Description"].apply(is_fresher_job)]
-        else:
-            df_filtered = df
-
-        nbrs = NearestNeighbors(n_neighbors=1, n_jobs=-1).fit(tfidf)
-        unique_org = df_filtered["test"].values
-        distances, indices = getNearestN(unique_org)
-        unique_org = list(unique_org)
-        matches = []
-
-        for i, j in enumerate(indices):
-            dist = round(distances[i][0], 2)
-            temp = [dist]
-            matches.append(temp)
-
-        matches = pd.DataFrame(matches, columns=["Match confidence"])
-        df_filtered["match"] = matches["Match confidence"]
-        df1 = df_filtered.sort_values("match")
-        df2 = (
-            df1[["Position", "Company", "Location", "url", "test"]]
-            .head(9)
-            .reset_index()
-        )
-
-        df2["Location"] = df2["Location"].str.replace(r"[^\x00-\x7F]", "")
-        df2["Location"] = df2["Location"].str.replace("â€“", "")
-        dropdown_locations = sorted(df2["Location"].unique())
-
-        # Generate relevance scores
-        job_list = []
-        relevance_scores = []
-
-        for index, row in df2.iterrows():
-            job_description = row["test"]
-            resume_tfidf = vectorizer.transform(org_name_clean)
-            job_tfidf = vectorizer.transform([job_description])
-
-            relevance_score = cosine_similarity(resume_tfidf, job_tfidf)[0][0]
-            relevance_scores.append(relevance_score)
-            print(
-                f"Relevance Score for {row['Position']} at {row['Company']}: {relevance_score}"
-            )
-
-            job_list.append(
-                {
-                    "Position": row["Position"],
-                    "Company": row["Company"],
-                    "Location": row["Location"],
-                    "Apply Link": row["url"],
-                }
-            )
-
-        print("\nTop Recommendations and Their Relevance Scores:")
-        for i, row in enumerate(df2.itertuples()):
-            print(
-                f"{i+1}. Position: {row.Position}, Company: {row.Company}, Relevance Score: {relevance_scores[i]}"
-            )
-
-        return render_template(
-            "page.html", job_list=job_list, dropdown_locations=dropdown_locations
-        )
-
-
-if __name__ == "__main__":
-    app.run()
-"""
 
 import numpy as np
 import pandas as pd
@@ -199,6 +14,10 @@ from flask import Flask, render_template, redirect, request, jsonify
 from pyresparser import ResumeParser
 import os
 import time
+from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask_pymongo import PyMongo
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 nltk.data.path.append("C:\\Users\\ACER/nltk_data")
 nltk.download("stopwords")
@@ -212,6 +31,11 @@ df["test"] = df["Job_Description"].apply(
 )
 
 app = Flask(__name__)
+app.secret_key = "sourabh"
+
+# Configure MongoDB
+app.config["MONGO_URI"] = "mongodb://localhost:27017/job_rec_app"
+mongo = PyMongo(app)
 
 # Define terms that indicate senior roles
 senior_keywords = [
@@ -260,37 +84,59 @@ def extract_text_from_pdf(filepath):
     except Exception as e:
         raise Exception(f"Error extracting text from PDF: {str(e)}")
 
-@app.route('/')
-def home():
-    return render_template("home.html")  # Make sure 'home.html' is in the templates folder
 
-# Route for a general page (rename or modify as needed)
-@app.route('/hello')
-def hello():
-    return render_template("page.html")
-
-# Routes for authentication pages
-@app.route('/signin')
+@app.route('/signin', methods=["GET", "POST"])
 def signin():
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+        
+        # Check if user exists and verify password
+        user = mongo.db.users.find_one({"email": email})
+        if user and check_password_hash(user["password"], password):
+            session["user_id"] = str(user["_id"])
+            flash("Signed in successfully!", "success")
+            return redirect(url_for("home"))  # Redirect to homepage or dashboard
+        
+        flash("Invalid credentials", "error")
+        return redirect(url_for("signin"))
     return render_template("signin.html")
 
-@app.route('/signup')
+@app.route('/signup', methods=['GET', 'POST'])
 def signup():
+    if request.method == "POST":
+        # Get form data
+        name = request.form.get("name")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        confirm_password = request.form.get("confirm_password")
+        
+        # Password confirmation check
+        if password != confirm_password:
+            flash("Passwords do not match!", "error")
+            return redirect(url_for("signup"))
+        
+        # Check if user already exists
+        if mongo.db.users.find_one({"email": email}):
+            flash("Email already exists!", "error")
+            return redirect(url_for("signup"))
+        
+        # Hash the password and store the user data
+        hashed_password = generate_password_hash(password)
+        mongo.db.users.insert_one({"name":name, "email": email, "password": hashed_password})
+        
+        flash("Signup successful! Please log in.", "success")
+        return redirect(url_for("signin"))
     return render_template("signup.html")
 
-  # Route for model page
+# Route for model page
 @app.route('/model')
 def model():
     return render_template("model.html")
 
-
-# def check_fresher(experience):
-#     for exp in experience:
-#         # Look for the word 'intern' anywhere in the description, case insensitive
-#         if isinstance(exp, str):
-#             if "intern" not in exp.lower():
-#                 return False  # Return False if any non-intern experience is found
-#     return True  # All experiences are internship-related
+@app.route('/')
+def home():
+    return render_template("home.html") 
 
 
 def check_fresher(experience):
@@ -341,9 +187,6 @@ def check_fresher(experience):
     # If we found an internship and no other types of roles, return True
     return has_intern
 
-
-# Example usage for the fresher check
-# Output fresher status
 
 
 @app.route("/submit", methods=["POST"])
